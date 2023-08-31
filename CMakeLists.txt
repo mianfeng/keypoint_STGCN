@@ -215,42 +215,16 @@ else()
     endif()
 endif(NOT WIN32)
 
-# include(FetchContent)
+include(FetchContent)
 
+FetchContent_Declare(
+  spdlog
+  GIT_REPOSITORY http://git.hhqj.com/pub/spdlog.git
+  GIT_TAG v1.11.0)
 
-# FetchContent_Declare(
-#   libhv
-#   GIT_REPOSITORY http://git.hhqj.com/pub/libhv.git
-#   GIT_TAG v1.3.0)
-
-# FetchContent_Declare(
-#   json
-#   GIT_REPOSITORY http://git.hhqj.com/pub/json.git
-#   GIT_TAG v3.11.2)
-
-# FetchContent_Declare(
-#   ffcxx
-#   GIT_REPOSITORY http://git.hhqj.com/zck/ffcxx.git
-#   GIT_TAG main)
-
-# # FetchContent_MakeAvailable(ffcxx)
-# FetchContent_Declare(
-#   spdlog
-#   GIT_REPOSITORY http://git.hhqj.com/pub/spdlog.git
-#   GIT_TAG v1.11.0)
-
-#   FetchContent_MakeAvailable(spdlog ffcxx libhv json)
+  FetchContent_MakeAvailable(spdlog )
 # 添加spdlog子目录
 add_subdirectory(deps/spdlog-src)
-
-# # 添加libhv子目录
-# add_subdirectory(deps/libhv-src)
-
-# # 添加json子目录
-# add_subdirectory(deps/json-src)
-
-# # 添加ffcxx子目录
-# add_subdirectory(deps/ffcxx-src)
 set(DEPS ${DEPS} spdlog)
 if(WITH_GPU)
   if(NOT WIN32)
